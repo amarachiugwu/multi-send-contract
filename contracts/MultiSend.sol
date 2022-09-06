@@ -3,8 +3,21 @@ pragma solidity ^0.8.9;
 
 contract MultiSend{
 
+    address owner;
+
     event SendAll (address to, uint amt);
     error SendFailed (address addr, uint amount);
+
+    constructor () payable {
+        owner = msg.sender;
+    }
+
+    /**
+    * @dev returns the balance of the smart contract
+    */
+    function getContractBal() public view returns (uint bal){
+        bal = address(this).balance;
+    }
 
     function checkSendersBalance () public view returns (uint bal){
         bal = msg.sender.balance;   
