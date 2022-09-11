@@ -29,6 +29,7 @@ contract MultiSend{
         uint totalToSend = amt * arrLength;
         uint bal = checkSendersBalance ();
         require(bal > totalToSend, "Insufficient balance");
+        require(msg.value >= totalToSend, "Pass enough value to multisend");
 
         for (uint i = 0; i < arrLength; i++) {
             if(recievers[i] != address(0)) {
